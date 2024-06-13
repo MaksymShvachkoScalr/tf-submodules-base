@@ -12,4 +12,4 @@ resource "null_resource" "instrument" {
 
 output "instrument_name" {
   value = var.name
-}
+
