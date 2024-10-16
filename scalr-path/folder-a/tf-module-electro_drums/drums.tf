@@ -1,7 +1,7 @@
 # tf-module-drums/main.tf
 variable "name" {
   type    = string
-  default = "drums"
+  default = "electro-drums"
 }
 
 resource "null_resource" "instrument" {
