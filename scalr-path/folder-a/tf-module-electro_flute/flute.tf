@@ -1,7 +1,7 @@
 # tf-module-flute/main.tf
 variable "name" {
   type    = string
-  default = "flute"
+  default = "electro-flute"
 }
 
 resource "null_resource" "instrument" {
