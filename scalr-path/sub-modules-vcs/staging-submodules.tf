@@ -1,7 +1,4 @@
-module "drums" {
-  source = "./tf-module-drums"
-}
-
-output "instrument_name" {
-  value = module.drums.instrument_name
+module "base_tf-module-drums" {
+  source  = "bluesky.main.scalr.dev/acc-v0o6dnihvv3lg7eq2/base/submodules//modules/tf-module-drums"
+  version = "0.1.4"
 }
