@@ -10,6 +10,12 @@ resource "null_resource" "instrument" {
   }
 }
 
+resource "null_resource" "instrument-2" {
+  provisioner "local-exec" {
+    command = "echo Playing the ${var.name}"
+  }
+}
+
 output "instrument_name" {
   value = var.name
 }
