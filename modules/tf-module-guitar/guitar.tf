@@ -1,6 +1,7 @@
 # tf-module-guitar/main.tf
 variable "name" {
   type    = string
+  default = "guitar"
 }
 
 resource "null_resource" "instrument" {
