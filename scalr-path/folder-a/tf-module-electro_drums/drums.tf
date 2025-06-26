@@ -6,7 +6,7 @@ variable "name" {
 
 resource "null_resource" "instrument" {
   provisioner "local-exec" {
-    command = "echo Playing the ${var.name} test"
+    command = "echo Playing the ${var.name} max"
   }
 }
 
