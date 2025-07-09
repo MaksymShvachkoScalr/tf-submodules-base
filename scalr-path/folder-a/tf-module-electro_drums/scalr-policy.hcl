@@ -35,8 +35,3 @@ policy "protect_controller" {
     enabled = true
     enforcement_level = "soft-mandatory"
 }
-
-policy "destroy_approval" {
-    enabled = true
-    enforcement_level = "soft-mandatory"
-}
