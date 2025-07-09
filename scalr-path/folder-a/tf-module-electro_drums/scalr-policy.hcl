@@ -1,20 +1,42 @@
-# scalr-policy.hcl
-# Basic Sentinel policy for Scalr
+version = "v1"
 
-main = rule {
-  validate_workspace_settings and
-  restrict_providers
+#policy "terraform_version_check" {
+#    enabled = true
+#    enforcement_level = "soft-mandatory"
+#}
+
+policy "terraform_min_version" {
+  enabled = true
+  enforcement_level = "hard-mandatory"
 }
 
-# Workspace validation rule
-validate_workspace_settings = rule {
-  scalr.workspace.terraform_version starts_with "1." and
-  scalr.workspace.auto_apply == false
+
+policy "terraform_suggested_version" {
+  enabled = true
+  enforcement_level = "soft-mandatory"
 }
 
-# Provider restriction rule
-restrict_providers = rule {
-  all scalr.workspace.providers as _, provider {
-    provider in ["aws", "azurerm", "google"]
-  }
+policy "limit_modules" {
+    enabled = false
+    enforcement_level = "soft-mandatory"
+}
+
+policy "workspace_name_convention" {
+    enabled = true
+    enforcement_level = "advisory"
+}
+
+policy "limit_cost" {
+    enabled = true
+    enforcement_level = "soft-mandatory"
+}
+
+policy "protect_controller" {
+    enabled = true
+    enforcement_level = "soft-mandatory"
+}
+
+policy "destroy_approval" {
+    enabled = true
+    enforcement_level = "soft-mandatory"
 }
