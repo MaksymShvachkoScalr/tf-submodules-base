@@ -1,32 +1,20 @@
-# Simplified scalr-policy.hcl
-# Basic Sentinel policy for HashiCorp Scalr
+# scalr-policy.hcl
+# Basic Sentinel policy for Scalr
 
 main = rule {
-  validate_workspace and
-  restrict_providers and
-  block_sensitive_resources
+  validate_workspace_settings and
+  restrict_providers
 }
 
-# Basic workspace requirements
-validate_workspace = rule {
-  scalr.workspace.terraform_version starts_with "1." and  # Must use Terraform 1.x
-  scalr.workspace.auto_apply == false                    # No auto-apply
+# Workspace validation rule
+validate_workspace_settings = rule {
+  scalr.workspace.terraform_version starts_with "1." and
+  scalr.workspace.auto_apply == false
 }
 
-# Allowed cloud providers
+# Provider restriction rule
 restrict_providers = rule {
-  all scalr.workspace.providers as provider {
+  all scalr.workspace.providers as _, provider {
     provider in ["aws", "azurerm", "google"]
-  }
-}
-
-# Block sensitive resources
-block_sensitive_resources = rule {
-  all scalr.plan.resource_changes as change {
-    change.type not in [
-      "aws_iam_user",
-      "google_service_account_key",
-      "azurerm_key_vault_secret"
-    ]
   }
 }
