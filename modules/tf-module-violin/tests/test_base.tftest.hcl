@@ -1,6 +1,6 @@
 run "base" {
   module {
-    source = "../"  # шлях з tests/ до кореня модуля
+    source = "../" 
   }
 
   assert {
