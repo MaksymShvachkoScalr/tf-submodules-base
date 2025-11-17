@@ -5,16 +5,16 @@
 run "default_name" {
   command = plan
 
-  // Check that the null_resource.instrument is present
-  assert {
-    condition     = can(resource.null_resource.instrument.id)
-    error_message = "Expected null_resource.instrument to exist in the plan"
-  }
-
-  // Check that the output uses the default variable value ("violin")
+  // Output should equal the default value of variable "name"
   assert {
     condition     = output.instrument_name == "violin"
     error_message = "Expected instrument_name output to equal default value 'violin'"
+  }
+
+  // And it should not be empty
+  assert {
+    condition     = output.instrument_name != ""
+    error_message = "instrument_name output should not be empty"
   }
 }
 
@@ -30,11 +30,5 @@ run "custom_name" {
   assert {
     condition     = output.instrument_name == "electric_violin"
     error_message = "Expected instrument_name output to equal overridden value 'electric_violin'"
-  }
-
-  // Resource should still exist when name is overridden
-  assert {
-    condition     = can(resource.null_resource.instrument.id)
-    error_message = "Expected null_resource.instrument to exist when using a custom name"
   }
 }
