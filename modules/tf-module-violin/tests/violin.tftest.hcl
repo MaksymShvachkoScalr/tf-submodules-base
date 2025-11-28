@@ -7,13 +7,13 @@ run "default_name" {
 
   // Output should equal the default value of variable "name"
   assert {
-    condition     = output.instrument_name == "guitar"
+    condition     = output.instrument_name == "violin"
     error_message = "Expected instrument_name output to equal default value 'violin'"
   }
 
   // And it should not be empty
   assert {
-    condition     = output.instrument_name == ""
+    condition     = output.instrument_name != ""
     error_message = "instrument_name output should not be empty"
   }
 }
@@ -28,7 +28,7 @@ run "custom_name" {
 
   // Output should reflect overridden variable
   assert {
-    condition     = output.instrument_name == "acoustic_violin"
-    error_message = "Expected instrument_name output to equal overridden value 'acoustic_violin'"
+    condition     = output.instrument_name == "electric_violin"
+    error_message = "Expected instrument_name output to equal overridden value 'electric_violin'"
   }
 }
